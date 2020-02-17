@@ -56,7 +56,8 @@ stages:
                 targetType: 'inline'
                 script: |
                   # Modify deployment script based on the app type
-                  echo "Starting deployment script run"
+                  echo starting download for artifact
+                  echo $(Build.ArtifactStagingDirectory)
                   unzip $(Build.ArtifactStagingDirectory)/drop/$(Build.BuildId).zip -d /var/www/html
           routeTraffic:
             steps:
