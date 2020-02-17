@@ -58,7 +58,10 @@ stages:
                   # Modify deployment script based on the app type
                   echo starting download for artifact
                   echo $(Build.ArtifactStagingDirectory)
-                  unzip $(Build.ArtifactStagingDirectory)/drop/$(Build.BuildId).zip -d /var/www/html
+                  cd $(Build.ArtifactStagingDirectory)
+                  cd ..
+                  cd drop
+                  unzip $(Build.BuildId).zip -d /var/www/html
           routeTraffic:
             steps:
             - script: echo routing traffic
