@@ -39,7 +39,7 @@ stages:
   - deployment: VMDeploy
     displayName: web
     environment:
-      name: <environment name>
+      name: cotstage1
       resourceType: VirtualMachine
     strategy:
         rolling:
@@ -57,7 +57,7 @@ stages:
                 script: |
                   # Modify deployment script based on the app type
                   echo "Starting deployment script run"
-                  sudo java -jar '$(Pipeline.Workspace)/drop/**/target/*.jar'
+                  unzip $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip -d /var/www/html
           routeTraffic:
             steps:
             - script: echo routing traffic
